@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Signature Formatter</title>
+<style>
+  :root{
+    --paper:#EDF1F6; --surface:#FFFFFF; --surface-2:#F6F8FB;
+    --ink:#15233B; --muted:#5D6B80; --faint:#8794A6;
+    --hairline:#DCE3EC; --hairline-2:#E8EDF3;
+    --accent:#2552E6; --accent-ink:#173BB0; --accent-soft:#E7ECFD;
+    --ok:#0F7A52; --ok-soft:#E0F2EA; --danger:#B23B3B; --danger-soft:#FBE6E6;
+    --shadow:0 1px 2px rgba(21,35,59,.06),0 10px 34px rgba(21,35,59,.08);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:radial-gradient(var(--hairline) 1px,transparent 1px);
+    background-size:22px 22px;background-attachment:fixed;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    -webkit-font-smoothing:antialiased;padding:30px 18px 40px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:20px;}
+  .mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;color:#fff;}
+  .mark svg{width:21px;height:21px;}
+  .brand h1{font-size:19px;font-weight:650;letter-spacing:-.02em;margin:0;}
+
+  .card{width:100%;max-width:430px;background:var(--surface);border:1px solid var(--hairline);border-radius:18px;box-shadow:var(--shadow);padding:18px;}
+
+  .drop{
+    border:1.5px dashed var(--hairline);border-radius:13px;background:var(--surface-2);
+    min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:30px 22px;cursor:pointer;gap:12px;color:var(--muted);
+    transition:border-color .18s,background .18s,transform .15s;
+  }
+  .drop:hover{border-color:var(--accent);background:var(--accent-soft);}
+  .drop.drag{border-color:var(--accent);background:var(--accent-soft);transform:scale(.99);}
+  .drop:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+  .drop .ico{width:44px;height:44px;color:var(--accent);}
+  .drop strong{color:var(--ink);font-weight:600;font-size:15px;}
+  .drop span{font-size:12.5px;max-width:26ch;}
+
+  .stage{
+    border:1px solid var(--hairline);border-radius:13px;background:#fff;
+    background-image:linear-gradient(var(--hairline-2) 1px,transparent 1px),linear-gradient(90deg,var(--hairline-2) 1px,transparent 1px);
+    background-size:15px 15px;padding:22px;display:flex;align-items:center;justify-content:center;min-height:200px;
+  }
+  .stage img{max-width:100%;max-height:280px;display:block;border:1px solid var(--hairline);border-radius:3px;
+    background:conic-gradient(#fff 90deg,#f2f4f7 0 180deg,#fff 0 270deg,#f2f4f7 0) 0 0/14px 14px;}
+
+  .readout{display:flex;align-items:center;gap:10px;margin-top:15px;flex-wrap:wrap;}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--ok-soft);color:var(--ok);}
+  .spec{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;}
+
+  .actions{margin-top:16px;}
+  .btn{font:inherit;font-weight:600;font-size:15px;border-radius:10px;padding:13px 16px;cursor:pointer;border:1px solid transparent;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.15s;}
+  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent-ink);}
+  .btn svg{width:18px;height:18px;}
+  .again{display:block;width:100%;text-align:center;margin-top:11px;background:none;border:0;font:inherit;font-size:13px;color:var(--muted);cursor:pointer;padding:6px;}
+  .again:hover{color:var(--accent);}
+
+  .msg{font-size:12.5px;border-radius:10px;padding:11px 12px;margin-top:14px;display:none;}
+  .msg.show{display:block;}
+  .msg.err{background:var(--danger-soft);color:#8c2f2f;}
+
+  .foot{margin-top:18px;font-size:11px;color:var(--faint);text-align:center;}
+
+  [hidden]{display:none!important;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Upload an image">
+      <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <strong>Upload your signature</strong>
+      <span>Tap, drag &amp; drop, or paste an image</span>
+    </div>
+    <input id="file" type="file" accept="image/*,.heic,.heif,.avif" hidden />
+
+    <div id="resultArea" hidden>
+      <div class="stage"><img id="out" alt="Formatted output" /></div>
+      <div class="readout">
+        <span class="chip" id="status">Ready</span>
+        <span class="spec" id="spec"></span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="download" type="button">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download
+        </button>
+        <button class="again" id="again" type="button">Choose a different image</button>
+      </div>
+    </div>
+
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <p class="foot">Runs in your browser. Nothing is uploaded.</p>
+
+<script>
+"use strict";
+(function(){
+  // ---- fixed defaults (signature: 6 x 2 cm @ 300 DPI, JPEG, whitened, 10-20 KB) ----
+  const CFG={ widthCm:6, heightCm:2, dpi:300, type:"image/jpeg",
+              padding:0.08, whiten:true, thresh:165, minKB:10, maxKB:20 };
+
+  const $=id=>document.getElementById(id);
+  const drop=$("drop"), fileInput=$("file"), resultArea=$("resultArea"),
+        outImg=$("out"), statusEl=$("status"), specEl=$("spec"),
+        dlBtn=$("download"), againBtn=$("again"), msgEl=$("msg");
+  let lastBlob=null, lastName="signature.jpg";
+
+  // ---- DPI embedding (JFIF density) ----
+  function patchJpegDpi(buf,dpi){
+    const b=new Uint8Array(buf);
+    if(b[0]!==0xFF||b[1]!==0xD8) return b;
+    if(b[2]===0xFF&&b[3]===0xE0&&b[6]===0x4A&&b[7]===0x46&&b[8]===0x49&&b[9]===0x46){
+      b[13]=1;b[14]=(dpi>>8)&0xFF;b[15]=dpi&0xFF;b[16]=(dpi>>8)&0xFF;b[17]=dpi&0xFF;return b;
+    }
+    const app0=new Uint8Array([0xFF,0xE0,0,0x10,0x4A,0x46,0x49,0x46,0,1,1,1,(dpi>>8)&0xFF,dpi&0xFF,(dpi>>8)&0xFF,dpi&0xFF,0,0]);
+    const out=new Uint8Array(b.length+app0.length);
+    out.set(b.slice(0,2),0);out.set(app0,2);out.set(b.slice(2),2+app0.length);return out;
+  }
+  function whiten(ctx,W,H,thr){
+    const hi=thr,lo=Math.max(20,thr-95),img=ctx.getImageData(0,0,W,H),d=img.data;
+    for(let i=0;i<d.length;i+=4){
+      const g=(d[i]+d[i+1]+d[i+2])/3; let a=(hi-g)/(hi-lo); a=a<0?0:a>1?1:a;
+      d[i]=Math.round(255*(1-a)+d[i]*0.9*a);
+      d[i+1]=Math.round(255*(1-a)+d[i+1]*0.9*a);
+      d[i+2]=Math.round(255*(1-a)+d[i+2]*0.9*a); d[i+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+  }
+  const toBlob=(c,t,q)=>new Promise(r=>c.toBlob(b=>r(b),t,q));
+  const kb=b=>(b/1024).toFixed(1);
+
+  async function process(bitmap){
+    const W=Math.round(CFG.widthCm/2.54*CFG.dpi), H=Math.round(CFG.heightCm/2.54*CFG.dpi);
+    const canvas=document.createElement("canvas"); canvas.width=W; canvas.height=H;
+    const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high";
+    ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,H);
+    const s=Math.min(W*(1-CFG.padding)/bitmap.width, H*(1-CFG.padding)/bitmap.height);
+    const dw=bitmap.width*s, dh=bitmap.height*s;
+    ctx.drawImage(bitmap,(W-dw)/2,(H-dh)/2,dw,dh);
+    if(CFG.whiten) whiten(ctx,W,H,CFG.thresh);
+
+    // tune JPEG quality into the size range
+    let lo=0.2,hi=0.98,best=null;
+    for(let i=0;i<8;i++){ const m=(lo+hi)/2; const b=await toBlob(canvas,CFG.type,m);
+      if(b.size/1024>CFG.maxKB){hi=m;} else {best={b,q:m};lo=m;} }
+    if(!best){ const b=await toBlob(canvas,CFG.type,0.2); best={b,q:0.2}; }
+
+    const buf=await best.b.arrayBuffer();
+    const bytes=patchJpegDpi(buf,CFG.dpi);
+    const finalBlob=new Blob([bytes],{type:CFG.type});
+
+    // preview via data URL (renders everywhere)
+    let preview; try{ preview=canvas.toDataURL(CFG.type,best.q); }catch(e){ preview=URL.createObjectURL(finalBlob); }
+    outImg.src=preview;
+    lastBlob=finalBlob;
+    statusEl.textContent="Ready";
+    specEl.textContent=`${W} × ${H} px · ${CFG.dpi} DPI · ${kb(finalBlob.size)} KB`;
+    drop.hidden=true; resultArea.hidden=false; msgEl.className="msg";
+  }
+
+  function loadViaImg(file){
+    return new Promise((res,rej)=>{ const u=URL.createObjectURL(file),im=new Image();
+      im.onload=()=>{URL.revokeObjectURL(u);res(im);}; im.onerror=()=>{URL.revokeObjectURL(u);rej();}; im.src=u; });
+  }
+  async function handle(file){
+    if(!file) return;
+    lastName=(file.name||"signature").replace(/\.[^.]+$/,"").replace(/[^a-z0-9_-]+/gi,"_").slice(0,40)||"signature";
+    lastName+="_709x236_300dpi.jpg";
+    msgEl.className="msg";
+    let bmp=null;
+    try{ bmp=await createImageBitmap(file,{imageOrientation:"from-image"}); }
+    catch(e){ try{ bmp=await loadViaImg(file); }catch(e2){
+      msgEl.textContent="Couldn't read that file. If it's a HEIC photo from an iPhone, open it in Photos and Share → Save as JPEG, then try again.";
+      msgEl.className="msg show err"; return; } }
+    try{ await process(bmp); }
+    catch(e){ msgEl.textContent="Something went wrong. Please try another image."; msgEl.className="msg show err"; }
+  }
+  function reset(){ resultArea.hidden=true; drop.hidden=false; lastBlob=null; msgEl.className="msg"; }
+
+  drop.addEventListener("click",()=>fileInput.click());
+  drop.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();fileInput.click();} });
+  fileInput.addEventListener("change",e=>{ if(e.target.files[0]) handle(e.target.files[0]); fileInput.value=""; });
+  againBtn.addEventListener("click",()=>{ reset(); fileInput.click(); });
+
+  ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("drag");}));
+  ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("drag");}));
+  drop.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; if(f) handle(f); });
+  window.addEventListener("paste",e=>{ const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith("image/")); if(it) handle(it.getAsFile()); });
+
+  dlBtn.addEventListener("click",()=>{
+    if(!lastBlob) return;
+    const a=document.createElement("a"); a.download=lastName;
+    const fr=new FileReader();
+    fr.onload=()=>{ a.href=fr.result; document.body.appendChild(a); a.click(); a.remove(); };
+    fr.onerror=()=>{ a.href=URL.createObjectURL(lastBlob); document.body.appendChild(a); a.click(); a.remove(); };
+    fr.readAsDataURL(lastBlob);
+  });
+})();
+</script>
+</body>
+</html>
