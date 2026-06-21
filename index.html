@@ -47,10 +47,44 @@
   }
   </script>
 
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the official signature size for SSC exams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The official signature size for SSC exams (like CGL, CHSL, MTS, GD) must be between 10 KB and 20 KB in JPEG/JPG format. The physical dimensions must be 6.0 cm width x 2.0 cm height (or 4.0 cm x 2.0 cm) at a resolution of 300 DPI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my signature being rejected on the SSC portal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rejections typically happen if the file size is less than 10 KB or more than 20 KB, if the background is grey/shadowed from a phone photo, or if the aspect ratio is incorrect causing distortion. This tool automatically whiten backgrounds, resizes to 6x2 cm, and compresses to exactly 10-20 KB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my signature uploaded to any server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The processing and conversion is done entirely offline in your browser. Your signature image is processed locally on your computer or phone and is never uploaded to any server or shared with anyone."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPXZW3RVF6"></script>
@@ -66,22 +100,24 @@
 
   <style>
     :root {
-      --bg: #f5f5f7;
-      --surface: #ffffff;
-      --text: #1d1d1f;
-      --text-secondary: #86868b;
-      --border: #d2d2d7;
-      --border-light: #e8e8ed;
-      --accent: #0071e3;
-      --accent-hover: #0077ed;
-      --success: #248a3d;
-      --success-bg: #f0faf3;
-      --error: #d70015;
-      --error-bg: #fef2f2;
+      --bg: #07080d;
+      --surface: rgba(15, 18, 30, 0.6);
+      --surface-card: rgba(15, 18, 30, 0.45);
+      --text: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.05);
+      --accent: #4f46e5;
+      --accent-hover: #5d55fa;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.08);
+      --error: #ef4444;
+      --error-bg: rgba(239, 68, 68, 0.08);
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: ui-monospace, 'SF Mono', Menlo, monospace;
-      --radius: 16px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+      --radius: 20px;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -96,8 +132,41 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 40px 16px;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glows */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header, main, section, .feedback-btn {
+      position: relative;
+      z-index: 1;
     }
 
     /* ---- Brand ---- */
@@ -105,123 +174,155 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
       display: grid;
       place-items: center;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
     }
 
     .mark svg { width: 22px; height: 22px; color: #fff; }
 
     .brand h1 {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(to right, #ffffff, #d2d2d7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* ---- Card ---- */
     .card {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: var(--surface);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 20px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     /* ---- Drop Zone ---- */
     .drop {
-      border: 1.5px dashed var(--border);
-      border-radius: 12px;
-      background: var(--bg);
-      min-height: 200px;
+      border: 2px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 32px 20px;
+      padding: 32px 24px;
       cursor: pointer;
-      gap: 10px;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      gap: 12px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .drop:hover {
-      border-color: var(--accent);
-      background: #f0f5ff;
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
     .drop.drag {
-      border-color: var(--accent);
-      background: #e8f0fe;
-      transform: scale(0.99);
+      border-color: #4f46e5;
+      background: rgba(79, 70, 229, 0.08);
+      transform: scale(0.98);
     }
 
     .drop:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 3px;
+      outline: 2px solid #4f46e5;
+      outline-offset: 4px;
     }
 
     .drop svg {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       color: var(--text-secondary);
+      transition: color 0.3s, transform 0.3s;
     }
 
-    .drop:hover svg { color: var(--accent); }
+    .drop:hover svg {
+      color: #3b82f6;
+      transform: translateY(-4px);
+    }
 
     .drop strong {
-      font-size: 15px;
-      font-weight: 600;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
       color: var(--text);
+      letter-spacing: -0.01em;
     }
 
     .drop span {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-secondary);
     }
 
     /* ---- Result ---- */
     .stage {
       border: 1px solid var(--border-light);
-      border-radius: 12px;
-      background: #fafafa;
-      padding: 20px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 160px;
+      min-height: 180px;
       position: relative;
+      overflow: hidden;
+    }
+
+    /* Fine grid pattern for transparent preview feel */
+    .stage::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.02) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.02) 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      pointer-events: none;
     }
 
     .clear-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      border: 1px solid var(--border-light);
-      background: var(--surface);
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(15, 18, 30, 0.8);
       cursor: pointer;
       display: grid;
       place-items: center;
       color: var(--text-secondary);
-      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      transition: all 0.2s;
       padding: 0;
+      backdrop-filter: blur(10px);
     }
 
     .clear-btn:hover {
       color: var(--error);
-      border-color: var(--error);
+      border-color: rgba(239, 68, 68, 0.4);
       background: var(--error-bg);
+      transform: scale(1.05);
     }
 
     .clear-btn svg { width: 14px; height: 14px; }
@@ -230,54 +331,65 @@
       max-width: 100%;
       max-height: 240px;
       display: block;
-      border-radius: 3px;
-      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
     .readout {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 12px;
+      gap: 12px;
+      margin-top: 16px;
       flex-wrap: wrap;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--mono);
       font-size: 11px;
-      font-weight: 600;
-      padding: 5px 10px;
+      font-weight: 700;
+      padding: 6px 12px;
       border-radius: 999px;
       background: var(--success-bg);
       color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.15);
     }
 
     .chip svg { width: 12px; height: 12px; }
 
     .chip.warn {
-      background: #fffbeb;
-      color: #b45309;
+      background: rgba(245, 158, 11, 0.08);
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.15);
     }
 
     .spec-text {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 11.5px;
+      font-weight: 500;
       color: var(--text-secondary);
       margin-left: auto;
+      background: rgba(255,255,255,0.03);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
     }
 
     /* ---- Buttons ---- */
-    .actions { margin-top: 16px; }
+    .actions { margin-top: 20px; }
 
     .btn {
       font: inherit;
-      font-weight: 600;
+      font-family: var(--font-heading);
+      font-weight: 700;
       font-size: 15px;
-      border-radius: 12px;
-      padding: 13px 16px;
+      border-radius: 14px;
+      padding: 14px 20px;
       cursor: pointer;
       border: none;
       width: 100%;
@@ -285,22 +397,27 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: background 0.2s, transform 0.1s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn:active { transform: scale(0.985); }
+    .btn:active { transform: scale(0.98); }
 
     .btn:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 2px;
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
       color: #fff;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
     }
 
-    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5d55fa, #4f93ff);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+      transform: translateY(-1px);
+    }
 
     .btn svg { width: 18px; height: 18px; }
 
@@ -308,31 +425,33 @@
       display: block;
       width: 100%;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 12px;
       background: none;
       border: none;
       font: inherit;
       font-size: 13px;
+      font-weight: 500;
       color: var(--text-secondary);
       cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      transition: color 0.2s, background 0.2s;
+      padding: 10px;
+      border-radius: 10px;
+      transition: all 0.2s;
     }
 
     .again:hover {
-      color: var(--accent);
-      background: #f0f5ff;
+      color: #3b82f6;
+      background: rgba(59, 130, 246, 0.05);
     }
 
     /* ---- Messages ---- */
     .msg {
       font-size: 13px;
-      border-radius: 10px;
-      padding: 11px 12px;
-      margin-top: 12px;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 16px;
       display: none;
       line-height: 1.5;
+      border: 1px solid transparent;
     }
 
     .msg.show { display: block; }
@@ -340,6 +459,7 @@
     .msg.err {
       background: var(--error-bg);
       color: var(--error);
+      border-color: rgba(239, 68, 68, 0.15);
     }
 
     /* ---- Loading ---- */
@@ -349,10 +469,10 @@
     }
 
     .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border);
-      border-top-color: var(--accent);
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #3b82f6;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       margin: 0 auto;
@@ -364,45 +484,143 @@
 
     .loading-text {
       font-size: 13px;
+      font-weight: 500;
       color: var(--text-secondary);
       text-align: center;
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     /* ---- Feedback Button ---- */
     .feedback-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 44px;
-      height: 44px;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--surface);
-      border: 1px solid var(--border-light);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       display: grid;
       place-items: center;
       z-index: 100;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
+      backdrop-filter: blur(10px);
     }
 
     .feedback-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      transform: scale(1.08) translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.2);
     }
 
-    .feedback-btn svg { width: 20px; height: 20px; color: var(--text-secondary); }
-    .feedback-btn:hover svg { color: var(--accent); }
+    .feedback-btn svg { width: 22px; height: 22px; color: var(--text-secondary); }
+    .feedback-btn:hover svg { color: #3b82f6; }
+
+    /* ---- Info Section ---- */
+    .info-section {
+      width: 100%;
+      max-width: 460px;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .info-card h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card h3 svg {
+      width: 18px;
+      height: 18px;
+      color: #3b82f6;
+      flex-shrink: 0;
+    }
+
+    .info-card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-card li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .info-card li::before {
+      content: "•";
+      color: #3b82f6;
+      font-weight: bold;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+      padding: 14px 0;
+    }
+
+    .faq-item:first-of-type {
+      padding-top: 4px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-item h4 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+    }
 
     [hidden] { display: none !important; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 
     @media (max-width: 480px) {
-      body { padding: 16px 12px; }
-      .card { padding: 16px; }
-      .drop { min-height: 170px; padding: 24px 16px; }
+      body { padding: 24px 12px; }
+      .card { padding: 20px; }
+      .drop { min-height: 185px; padding: 24px 16px; }
       .feedback-btn { bottom: 16px; right: 16px; }
+      .info-section { margin-top: 24px; gap: 16px; }
+      .info-card { padding: 20px; }
     }
   </style>
 </head>
@@ -415,7 +633,7 @@
         <path d="M3 17C5 10 8 6 12 4C16 6 19 10 21 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
     </div>
-    <h1>SSC Exams Signature</h1>
+    <h1>SSC Signature Formatter</h1>
   </header>
 
   <main class="card">
@@ -461,6 +679,64 @@
 
     <div class="msg" id="msg" role="alert"></div>
   </main>
+
+  <section class="info-section">
+    <!-- Quick Specs -->
+    <div class="info-card">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        SSC Official Requirements
+      </h3>
+      <ul>
+        <li><strong>File Size:</strong> Must be strictly between 10 KB and 20 KB.</li>
+        <li><strong>Dimensions:</strong> 6.0 cm width × 2.0 cm height (recommended) or 4.0 cm × 2.0 cm.</li>
+        <li><strong>Resolution:</strong> 300 DPI for high print clarity.</li>
+        <li><strong>Format:</strong> JPEG/JPG files only.</li>
+        <li><strong>Background:</strong> Unblurred, plain white background with black or blue ink signature.</li>
+      </ul>
+    </div>
+
+    <!-- Why Rejections Happen -->
+    <div class="info-card">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        Why SSC Rejects Signatures
+      </h3>
+      <p>
+        The SSC registration portal automatically rejects uploads that fall even slightly outside specifications (e.g. 9.9 KB or 20.1 KB). Additionally, capturing a photo with a smartphone often results in a grey/shadowed background, which causes manual verification failure. This formatter removes background shadows and processes the image locally to fit precisely within the 10-20 KB requirement.
+      </p>
+    </div>
+
+    <!-- FAQs -->
+    <div class="info-card">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        Frequently Asked Questions
+      </h3>
+      <div class="faq-item">
+        <h4>How does the whitening feature work?</h4>
+        <p>It filters grey tints, shadows, and yellow room lighting from your photo, turning the paper pure white while enhancing your signature's ink contrast.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is my signature secure?</h4>
+        <p>Absolutely. All processing and compression runs locally on your device using client-side JavaScript. Your signature is never uploaded to any server or database.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if my file is still under 10 KB?</h4>
+        <p>If your signature is very short or thin, the optimized file might fall below 10 KB. If this happens, we recommend signing with a slightly thicker black or blue pen, or capturing the photo with a bit more detail, and converting it again.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Feedback Button -->
   <a class="feedback-btn" href="mailto:anand72amar@gmail.com?subject=SSC%20Sign%20-%20Feedback" aria-label="Send feedback" title="Send feedback">
