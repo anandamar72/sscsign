@@ -1,212 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Signature Formatter</title>
-<style>
-  :root{
-    --paper:#EDF1F6; --surface:#FFFFFF; --surface-2:#F6F8FB;
-    --ink:#15233B; --muted:#5D6B80; --faint:#8794A6;
-    --hairline:#DCE3EC; --hairline-2:#E8EDF3;
-    --accent:#2552E6; --accent-ink:#173BB0; --accent-soft:#E7ECFD;
-    --ok:#0F7A52; --ok-soft:#E0F2EA; --danger:#B23B3B; --danger-soft:#FBE6E6;
-    --shadow:0 1px 2px rgba(21,35,59,.06),0 10px 34px rgba(21,35,59,.08);
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- SEO -->
+  <title>SSC Sign — Signature Formatter for SSC Exam Forms</title>
+  <meta name="description" content="Format your signature to SSC exam specifications — 6×2 cm, 300 DPI, 10-20 KB JPEG. Free, instant, and 100% private." />
+  <meta name="keywords" content="SSC signature format, SSC exam signature, signature formatter, 6x2 cm signature, 300 DPI signature" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sscsign.in/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sscsign.in/" />
+  <meta property="og:title" content="SSC Sign — Signature Formatter for SSC Exams" />
+  <meta property="og:description" content="Format your signature to SSC exam specs. 6×2 cm, 300 DPI, 10-20 KB JPEG. Free & private." />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:site_name" content="SSC Sign" />
+  <meta property="og:image" content="https://sscsign.in/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SSC Sign — Signature Formatter for SSC Exams" />
+  <meta name="twitter:description" content="Format your signature to SSC exam specs. 6×2 cm, 300 DPI, 10-20 KB JPEG." />
+  <meta name="twitter:image" content="https://sscsign.in/og-image.png" />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SSC Exam Signature Formatter",
+    "url": "https://sscsign.in",
+    "description": "Free online signature formatter for SSC exam forms. Converts any signature to 6×2 cm, 300 DPI, 10-20 KB JPEG.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;}
-  body{
-    font-family:var(--sans);color:var(--ink);background:var(--paper);
-    background-image:radial-gradient(var(--hairline) 1px,transparent 1px);
-    background-size:22px 22px;background-attachment:fixed;
-    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    -webkit-font-smoothing:antialiased;padding:30px 18px 40px;
-  }
-  .brand{display:flex;align-items:center;gap:11px;margin-bottom:20px;}
-  .mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;color:#fff;}
-  .mark svg{width:21px;height:21px;}
-  .brand h1{font-size:19px;font-weight:650;letter-spacing:-.02em;margin:0;}
+  </script>
 
-  .card{width:100%;max-width:430px;background:var(--surface);border:1px solid var(--hairline);border-radius:18px;box-shadow:var(--shadow);padding:18px;}
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  .drop{
-    border:1.5px dashed var(--hairline);border-radius:13px;background:var(--surface-2);
-    min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:30px 22px;cursor:pointer;gap:12px;color:var(--muted);
-    transition:border-color .18s,background .18s,transform .15s;
-  }
-  .drop:hover{border-color:var(--accent);background:var(--accent-soft);}
-  .drop.drag{border-color:var(--accent);background:var(--accent-soft);transform:scale(.99);}
-  .drop:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
-  .drop .ico{width:44px;height:44px;color:var(--accent);}
-  .drop strong{color:var(--ink);font-weight:600;font-size:15px;}
-  .drop span{font-size:12.5px;max-width:26ch;}
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPXZW3RVF6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QPXZW3RVF6');
+  </script>
 
-  .stage{
-    border:1px solid var(--hairline);border-radius:13px;background:#fff;
-    background-image:linear-gradient(var(--hairline-2) 1px,transparent 1px),linear-gradient(90deg,var(--hairline-2) 1px,transparent 1px);
-    background-size:15px 15px;padding:22px;display:flex;align-items:center;justify-content:center;min-height:200px;
-  }
-  .stage img{max-width:100%;max-height:280px;display:block;border:1px solid var(--hairline);border-radius:3px;
-    background:conic-gradient(#fff 90deg,#f2f4f7 0 180deg,#fff 0 270deg,#f2f4f7 0) 0 0/14px 14px;}
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%23111'/><text x='50' y='68' text-anchor='middle' font-size='52' font-family='system-ui' font-weight='700' fill='white'>S</text></svg>" />
 
-  .readout{display:flex;align-items:center;gap:10px;margin-top:15px;flex-wrap:wrap;}
-  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--ok-soft);color:var(--ok);}
-  .spec{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;}
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --text-secondary: #86868b;
+      --border: #d2d2d7;
+      --border-light: #e8e8ed;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --success: #248a3d;
+      --success-bg: #f0faf3;
+      --error: #d70015;
+      --error-bg: #fef2f2;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+    }
 
-  .actions{margin-top:16px;}
-  .btn{font:inherit;font-weight:600;font-size:15px;border-radius:10px;padding:13px 16px;cursor:pointer;border:1px solid transparent;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.15s;}
-  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
-  .btn-primary{background:var(--accent);color:#fff;}
-  .btn-primary:hover{background:var(--accent-ink);}
-  .btn svg{width:18px;height:18px;}
-  .again{display:block;width:100%;text-align:center;margin-top:11px;background:none;border:0;font:inherit;font-size:13px;color:var(--muted);cursor:pointer;padding:6px;}
-  .again:hover{color:var(--accent);}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .msg{font-size:12.5px;border-radius:10px;padding:11px 12px;margin-top:14px;display:none;}
-  .msg.show{display:block;}
-  .msg.err{background:var(--danger-soft);color:#8c2f2f;}
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .foot{margin-top:18px;font-size:11px;color:var(--faint);text-align:center;}
+    /* ---- Brand ---- */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-  [hidden]{display:none!important;}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
-</style>
+    .mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--text);
+      display: grid;
+      place-items: center;
+    }
+
+    .mark svg { width: 22px; height: 22px; color: #fff; }
+
+    .brand h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* ---- Card ---- */
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    /* ---- Drop Zone ---- */
+    .drop {
+      border: 1.5px dashed var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 20px;
+      cursor: pointer;
+      gap: 10px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .drop:hover {
+      border-color: var(--accent);
+      background: #f0f5ff;
+    }
+
+    .drop.drag {
+      border-color: var(--accent);
+      background: #e8f0fe;
+      transform: scale(0.99);
+    }
+
+    .drop:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .drop svg {
+      width: 36px;
+      height: 36px;
+      color: var(--text-secondary);
+    }
+
+    .drop:hover svg { color: var(--accent); }
+
+    .drop strong {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .drop span {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ---- Result ---- */
+    .stage {
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: #fafafa;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      position: relative;
+    }
+
+    .clear-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      background: var(--surface);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      padding: 0;
+    }
+
+    .clear-btn:hover {
+      color: var(--error);
+      border-color: var(--error);
+      background: var(--error-bg);
+    }
+
+    .clear-btn svg { width: 14px; height: 14px; }
+
+    .stage img {
+      max-width: 100%;
+      max-height: 240px;
+      display: block;
+      border-radius: 3px;
+      border: 1px solid var(--border-light);
+    }
+
+    .readout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .chip svg { width: 12px; height: 12px; }
+
+    .chip.warn {
+      background: #fffbeb;
+      color: #b45309;
+    }
+
+    .spec-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-left: auto;
+    }
+
+    /* ---- Buttons ---- */
+    .actions { margin-top: 16px; }
+
+    .btn {
+      font: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 12px;
+      padding: 13px 16px;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.985); }
+
+    .btn:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn svg { width: 18px; height: 18px; }
+
+    .again {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      background: none;
+      border: none;
+      font: inherit;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .again:hover {
+      color: var(--accent);
+      background: #f0f5ff;
+    }
+
+    /* ---- Messages ---- */
+    .msg {
+      font-size: 13px;
+      border-radius: 10px;
+      padding: 11px 12px;
+      margin-top: 12px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .msg.show { display: block; }
+
+    .msg.err {
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    /* ---- Loading ---- */
+    .loading {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ---- Feedback Button ---- */
+    .feedback-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: grid;
+      place-items: center;
+      z-index: 100;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .feedback-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    .feedback-btn svg { width: 20px; height: 20px; color: var(--text-secondary); }
+    .feedback-btn:hover svg { color: var(--accent); }
+
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+
+    @media (max-width: 480px) {
+      body { padding: 16px 12px; }
+      .card { padding: 16px; }
+      .drop { min-height: 170px; padding: 24px 16px; }
+      .feedback-btn { bottom: 16px; right: 16px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="card">
-    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Upload an image">
-      <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  <header class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 20C4 20 5.5 15 12 15C18.5 15 20 20 20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M3 17C5 10 8 6 12 4C16 6 19 10 21 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>SSC Exams Signature</h1>
+  </header>
+
+  <main class="card">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Upload signature image">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <strong>Upload your signature</strong>
-      <span>Tap, drag &amp; drop, or paste an image</span>
+      <span>Tap, drag &amp; drop, or paste</span>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingArea" hidden>
+      <div style="padding:40px 0;text-align:center;">
+        <div class="spinner"></div>
+        <p class="loading-text">Formatting…</p>
+      </div>
     </div>
     <input id="file" type="file" accept="image/*,.heic,.heif,.avif" hidden />
 
     <div id="resultArea" hidden>
-      <div class="stage"><img id="out" alt="Formatted output" /></div>
+      <div class="stage">
+        <button class="clear-btn" id="clear" type="button" aria-label="Clear image">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <img id="out" alt="Formatted signature" />
+      </div>
       <div class="readout">
-        <span class="chip" id="status">Ready</span>
-        <span class="spec" id="spec"></span>
+        <span class="chip" id="status">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Ready
+        </span>
+        <span class="spec-text" id="spec"></span>
       </div>
       <div class="actions">
         <button class="btn btn-primary" id="download" type="button">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Download
         </button>
-        <button class="again" id="again" type="button">Choose a different image</button>
+        <button class="again" id="again" type="button">Choose another image</button>
       </div>
     </div>
 
-    <div class="msg" id="msg"></div>
-  </div>
+    <div class="msg" id="msg" role="alert"></div>
+  </main>
 
-  <p class="foot">Runs in your browser. Nothing is uploaded.</p>
+  <!-- Feedback Button -->
+  <a class="feedback-btn" href="mailto:anand72amar@gmail.com?subject=SSC%20Sign%20-%20Feedback" aria-label="Send feedback" title="Send feedback">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 
 <script>
 "use strict";
 (function(){
-  // ---- fixed defaults (signature: 6 x 2 cm @ 300 DPI, JPEG, whitened, 10-20 KB) ----
-  const CFG={ widthCm:6, heightCm:2, dpi:300, type:"image/jpeg",
-              padding:0.08, whiten:true, thresh:165, minKB:10, maxKB:20 };
+  const CFG = {
+    widthCm: 6, heightCm: 2, dpi: 300, type: "image/jpeg",
+    padding: 0.08, whiten: true, thresh: 165, minKB: 10, maxKB: 20
+  };
 
-  const $=id=>document.getElementById(id);
-  const drop=$("drop"), fileInput=$("file"), resultArea=$("resultArea"),
-        outImg=$("out"), statusEl=$("status"), specEl=$("spec"),
-        dlBtn=$("download"), againBtn=$("again"), msgEl=$("msg");
-  let lastBlob=null, lastName="signature.jpg";
+  const $ = id => document.getElementById(id);
+  const drop = $("drop"), fileInput = $("file"), resultArea = $("resultArea"),
+        outImg = $("out"), statusEl = $("status"), specEl = $("spec"),
+        dlBtn = $("download"), againBtn = $("again"), msgEl = $("msg");
+  let lastBlob = null, lastName = "signature.jpg";
 
-  // ---- DPI embedding (JFIF density) ----
-  function patchJpegDpi(buf,dpi){
-    const b=new Uint8Array(buf);
-    if(b[0]!==0xFF||b[1]!==0xD8) return b;
-    if(b[2]===0xFF&&b[3]===0xE0&&b[6]===0x4A&&b[7]===0x46&&b[8]===0x49&&b[9]===0x46){
-      b[13]=1;b[14]=(dpi>>8)&0xFF;b[15]=dpi&0xFF;b[16]=(dpi>>8)&0xFF;b[17]=dpi&0xFF;return b;
+  function patchJpegDpi(buf, dpi) {
+    const b = new Uint8Array(buf);
+    if (b[0] !== 0xFF || b[1] !== 0xD8) return b;
+    if (b[2] === 0xFF && b[3] === 0xE0 && b[6] === 0x4A && b[7] === 0x46 && b[8] === 0x49 && b[9] === 0x46) {
+      b[13] = 1; b[14] = (dpi >> 8) & 0xFF; b[15] = dpi & 0xFF;
+      b[16] = (dpi >> 8) & 0xFF; b[17] = dpi & 0xFF; return b;
     }
-    const app0=new Uint8Array([0xFF,0xE0,0,0x10,0x4A,0x46,0x49,0x46,0,1,1,1,(dpi>>8)&0xFF,dpi&0xFF,(dpi>>8)&0xFF,dpi&0xFF,0,0]);
-    const out=new Uint8Array(b.length+app0.length);
-    out.set(b.slice(0,2),0);out.set(app0,2);out.set(b.slice(2),2+app0.length);return out;
+    const app0 = new Uint8Array([0xFF, 0xE0, 0, 0x10, 0x4A, 0x46, 0x49, 0x46, 0, 1, 1, 1,
+      (dpi >> 8) & 0xFF, dpi & 0xFF, (dpi >> 8) & 0xFF, dpi & 0xFF, 0, 0]);
+    const out = new Uint8Array(b.length + app0.length);
+    out.set(b.slice(0, 2), 0); out.set(app0, 2); out.set(b.slice(2), 2 + app0.length);
+    return out;
   }
-  function whiten(ctx,W,H,thr){
-    const hi=thr,lo=Math.max(20,thr-95),img=ctx.getImageData(0,0,W,H),d=img.data;
-    for(let i=0;i<d.length;i+=4){
-      const g=(d[i]+d[i+1]+d[i+2])/3; let a=(hi-g)/(hi-lo); a=a<0?0:a>1?1:a;
-      d[i]=Math.round(255*(1-a)+d[i]*0.9*a);
-      d[i+1]=Math.round(255*(1-a)+d[i+1]*0.9*a);
-      d[i+2]=Math.round(255*(1-a)+d[i+2]*0.9*a); d[i+3]=255;
+
+  function whiten(ctx, W, H, thr) {
+    const hi = thr, lo = Math.max(20, thr - 95);
+    const img = ctx.getImageData(0, 0, W, H), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const g = (d[i] + d[i+1] + d[i+2]) / 3;
+      let a = (hi - g) / (hi - lo);
+      a = a < 0 ? 0 : a > 1 ? 1 : a;
+      d[i]   = Math.round(255 * (1 - a) + d[i]   * 0.9 * a);
+      d[i+1] = Math.round(255 * (1 - a) + d[i+1] * 0.9 * a);
+      d[i+2] = Math.round(255 * (1 - a) + d[i+2] * 0.9 * a);
+      d[i+3] = 255;
     }
-    ctx.putImageData(img,0,0);
-  }
-  const toBlob=(c,t,q)=>new Promise(r=>c.toBlob(b=>r(b),t,q));
-  const kb=b=>(b/1024).toFixed(1);
-
-  async function process(bitmap){
-    const W=Math.round(CFG.widthCm/2.54*CFG.dpi), H=Math.round(CFG.heightCm/2.54*CFG.dpi);
-    const canvas=document.createElement("canvas"); canvas.width=W; canvas.height=H;
-    const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high";
-    ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,H);
-    const s=Math.min(W*(1-CFG.padding)/bitmap.width, H*(1-CFG.padding)/bitmap.height);
-    const dw=bitmap.width*s, dh=bitmap.height*s;
-    ctx.drawImage(bitmap,(W-dw)/2,(H-dh)/2,dw,dh);
-    if(CFG.whiten) whiten(ctx,W,H,CFG.thresh);
-
-    // tune JPEG quality into the size range
-    let lo=0.2,hi=0.98,best=null;
-    for(let i=0;i<8;i++){ const m=(lo+hi)/2; const b=await toBlob(canvas,CFG.type,m);
-      if(b.size/1024>CFG.maxKB){hi=m;} else {best={b,q:m};lo=m;} }
-    if(!best){ const b=await toBlob(canvas,CFG.type,0.2); best={b,q:0.2}; }
-
-    const buf=await best.b.arrayBuffer();
-    const bytes=patchJpegDpi(buf,CFG.dpi);
-    const finalBlob=new Blob([bytes],{type:CFG.type});
-
-    // preview via data URL (renders everywhere)
-    let preview; try{ preview=canvas.toDataURL(CFG.type,best.q); }catch(e){ preview=URL.createObjectURL(finalBlob); }
-    outImg.src=preview;
-    lastBlob=finalBlob;
-    statusEl.textContent="Ready";
-    specEl.textContent=`${W} × ${H} px · ${CFG.dpi} DPI · ${kb(finalBlob.size)} KB`;
-    drop.hidden=true; resultArea.hidden=false; msgEl.className="msg";
+    ctx.putImageData(img, 0, 0);
   }
 
-  function loadViaImg(file){
-    return new Promise((res,rej)=>{ const u=URL.createObjectURL(file),im=new Image();
-      im.onload=()=>{URL.revokeObjectURL(u);res(im);}; im.onerror=()=>{URL.revokeObjectURL(u);rej();}; im.src=u; });
+  const toBlob = (c, t, q) => new Promise(r => c.toBlob(b => r(b), t, q));
+  const kb = b => (b / 1024).toFixed(1);
+
+  async function process(bitmap) {
+    const W = Math.round(CFG.widthCm / 2.54 * CFG.dpi);
+    const H = Math.round(CFG.heightCm / 2.54 * CFG.dpi);
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, W, H);
+    const s = Math.min(W * (1 - CFG.padding) / bitmap.width, H * (1 - CFG.padding) / bitmap.height);
+    const dw = bitmap.width * s, dh = bitmap.height * s;
+    ctx.drawImage(bitmap, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    if (CFG.whiten) whiten(ctx, W, H, CFG.thresh);
+
+    // Binary search: find highest quality that stays ≤ maxKB
+    let lo = 0.3, hi = 1.0, best = null;
+    for (let i = 0; i < 10; i++) {
+      const m = (lo + hi) / 2;
+      const b = await toBlob(canvas, CFG.type, m);
+      if (b.size / 1024 > CFG.maxKB) { hi = m; }
+      else { best = { b, q: m }; lo = m; }
+    }
+    // If even at max quality it's still small, use quality 1.0
+    if (!best) {
+      const b = await toBlob(canvas, CFG.type, 1.0);
+      best = { b, q: 1.0 };
+    }
+
+    const buf = await best.b.arrayBuffer();
+    const bytes = patchJpegDpi(buf, CFG.dpi);
+    const finalBlob = new Blob([bytes], { type: CFG.type });
+    const sizeKB = finalBlob.size / 1024;
+
+    let preview;
+    try { preview = canvas.toDataURL(CFG.type, best.q); }
+    catch(e) { preview = URL.createObjectURL(finalBlob); }
+    outImg.src = preview;
+    lastBlob = finalBlob;
+
+    // Status chip
+    const isInRange = sizeKB >= CFG.minKB && sizeKB <= CFG.maxKB;
+    const isUnder = sizeKB < CFG.minKB;
+    statusEl.className = isInRange ? "chip" : "chip warn";
+    statusEl.innerHTML = isInRange
+      ? '<svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Ready'
+      : (isUnder ? '⚠ Under 10 KB — may still work' : '⚠ Over 20 KB');
+    specEl.textContent = `${W}×${H} · ${CFG.dpi} DPI · ${kb(finalBlob.size)} KB`;
+    drop.hidden = true; resultArea.hidden = false; msgEl.className = "msg";
   }
-  async function handle(file){
-    if(!file) return;
-    lastName=(file.name||"signature").replace(/\.[^.]+$/,"").replace(/[^a-z0-9_-]+/gi,"_").slice(0,40)||"signature";
-    lastName+="_709x236_300dpi.jpg";
-    msgEl.className="msg";
-    let bmp=null;
-    try{ bmp=await createImageBitmap(file,{imageOrientation:"from-image"}); }
-    catch(e){ try{ bmp=await loadViaImg(file); }catch(e2){
-      msgEl.textContent="Couldn't read that file. If it's a HEIC photo from an iPhone, open it in Photos and Share → Save as JPEG, then try again.";
-      msgEl.className="msg show err"; return; } }
-    try{ await process(bmp); }
-    catch(e){ msgEl.textContent="Something went wrong. Please try another image."; msgEl.className="msg show err"; }
+
+  function loadViaImg(file) {
+    return new Promise((res, rej) => {
+      const u = URL.createObjectURL(file), im = new Image();
+      im.onload = () => { URL.revokeObjectURL(u); res(im); };
+      im.onerror = () => { URL.revokeObjectURL(u); rej(); };
+      im.src = u;
+    });
   }
-  function reset(){ resultArea.hidden=true; drop.hidden=false; lastBlob=null; msgEl.className="msg"; }
 
-  drop.addEventListener("click",()=>fileInput.click());
-  drop.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();fileInput.click();} });
-  fileInput.addEventListener("change",e=>{ if(e.target.files[0]) handle(e.target.files[0]); fileInput.value=""; });
-  againBtn.addEventListener("click",()=>{ reset(); fileInput.click(); });
+  const loadingArea = $("loadingArea");
 
-  ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("drag");}));
-  ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("drag");}));
-  drop.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; if(f) handle(f); });
-  window.addEventListener("paste",e=>{ const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith("image/")); if(it) handle(it.getAsFile()); });
+  async function handle(file) {
+    if (!file) return;
+    lastName = (file.name || "signature").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "_").slice(0, 40) || "signature";
+    lastName += "_709x236_300dpi.jpg";
+    msgEl.className = "msg";
+    // Show loading
+    drop.hidden = true;
+    loadingArea.hidden = false;
+    let bmp = null;
+    try { bmp = await createImageBitmap(file, { imageOrientation: "from-image" }); }
+    catch(e) {
+      try { bmp = await loadViaImg(file); }
+      catch(e2) {
+        loadingArea.hidden = true; drop.hidden = false;
+        msgEl.textContent = "Couldn't read that file. Try saving as JPEG first.";
+        msgEl.className = "msg show err"; return;
+      }
+    }
+    try { await process(bmp); loadingArea.hidden = true; }
+    catch(e) {
+      loadingArea.hidden = true; drop.hidden = false;
+      msgEl.textContent = "Something went wrong. Try another image.";
+      msgEl.className = "msg show err";
+    }
+  }
 
-  dlBtn.addEventListener("click",()=>{
-    if(!lastBlob) return;
-    const a=document.createElement("a"); a.download=lastName;
-    const fr=new FileReader();
-    fr.onload=()=>{ a.href=fr.result; document.body.appendChild(a); a.click(); a.remove(); };
-    fr.onerror=()=>{ a.href=URL.createObjectURL(lastBlob); document.body.appendChild(a); a.click(); a.remove(); };
+  function reset() { resultArea.hidden = true; loadingArea.hidden = true; drop.hidden = false; lastBlob = null; msgEl.className = "msg"; }
+
+  drop.addEventListener("click", () => fileInput.click());
+  drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); } });
+  fileInput.addEventListener("change", e => { if (e.target.files[0]) handle(e.target.files[0]); fileInput.value = ""; });
+  againBtn.addEventListener("click", () => { reset(); fileInput.click(); });
+  $("clear").addEventListener("click", () => reset());
+
+  ["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("drag"); }));
+  ["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("drag"); }));
+  drop.addEventListener("drop", e => { const f = e.dataTransfer.files[0]; if (f) handle(f); });
+  window.addEventListener("paste", e => { const it = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith("image/")); if (it) handle(it.getAsFile()); });
+
+  dlBtn.addEventListener("click", () => {
+    if (!lastBlob) return;
+    const a = document.createElement("a"); a.download = lastName;
+    const fr = new FileReader();
+    fr.onload = () => { a.href = fr.result; document.body.appendChild(a); a.click(); a.remove(); };
+    fr.onerror = () => { a.href = URL.createObjectURL(lastBlob); document.body.appendChild(a); a.click(); a.remove(); };
     fr.readAsDataURL(lastBlob);
   });
+
+
 })();
 </script>
 </body>
