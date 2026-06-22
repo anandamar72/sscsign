@@ -622,6 +622,167 @@
       .info-section { margin-top: 24px; gap: 16px; }
       .info-card { padding: 20px; }
     }
+
+    /* ---- Support Card & Modal ---- */
+    .support-card {
+      margin-top: 24px;
+      text-align: center;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .support-card p {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #0f121e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 28px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.show .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .modal-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .qr-container img {
+      display: block;
+      width: 160px;
+      height: 160px;
+    }
+
+    .upi-input-group {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .upi-id-text {
+      flex: 1;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+      padding: 10px 12px;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: all;
+    }
+
+    .copy-btn {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 0 16px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #5d55fa;
+    }
+
+    .copy-success-msg {
+      font-size: 11px;
+      color: var(--success);
+      margin-top: 4px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .copy-success-msg.show {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -679,6 +840,36 @@
 
     <div class="msg" id="msg" role="alert"></div>
   </main>
+
+  <!-- Support Card -->
+  <div class="support-card info-card">
+    <p>Saved your time? Support this ad-free tool! ☕</p>
+    <button class="btn btn-secondary" id="supportBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:#3b82f6;">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+      Buy me a Chai (₹20)
+    </button>
+  </div>
+
+  <!-- UPI Modal Overlay -->
+  <div class="modal-overlay" id="upiModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      <h3>Buy me a Chai ☕</h3>
+      <p>Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.</p>
+      
+      <div class="qr-container">
+        <img id="upiQr" src="" alt="UPI Payment QR Code" />
+      </div>
+
+      <div class="upi-input-group">
+        <div class="upi-id-text" id="upiIdDisplay">anandamar72@oksbi</div>
+        <button class="copy-btn" id="copyUpiBtn">Copy ID</button>
+      </div>
+      <div class="copy-success-msg" id="copySuccess">UPI ID copied to clipboard!</div>
+    </div>
+  </div>
 
   <section class="info-section">
     <!-- Quick Specs -->
@@ -899,6 +1090,61 @@
     fr.readAsDataURL(lastBlob);
   });
 
+  // UPI configuration placeholders
+  const UPI_CONFIG = {
+    id: "anandamar72@oksbi", // Placed here for user replacement
+    name: "Anand Amar", // Placed here for user replacement
+    amount: "20"
+  };
+
+  // UPI Support Widget Logic
+  const supportBtn = $("supportBtn"),
+        upiModal = $("upiModal"),
+        modalClose = $("modalClose"),
+        upiQr = $("upiQr"),
+        copyUpiBtn = $("copyUpiBtn"),
+        copySuccess = $("copySuccess"),
+        upiIdDisplay = $("upiIdDisplay");
+
+  if (supportBtn) {
+    if (upiIdDisplay) {
+      upiIdDisplay.textContent = UPI_CONFIG.id;
+    }
+
+    const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_CONFIG.id)}&pn=${encodeURIComponent(UPI_CONFIG.name)}&am=${UPI_CONFIG.amount}&cu=INR&tn=Support%20SSC%20Sign`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLink)}`;
+
+    supportBtn.addEventListener("click", () => {
+      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = upiLink;
+      } else {
+        if (upiQr && upiQr.src === "") {
+          upiQr.src = qrUrl;
+        }
+        upiModal.classList.add("show");
+      }
+    });
+
+    modalClose.addEventListener("click", () => {
+      upiModal.classList.remove("show");
+    });
+
+    upiModal.addEventListener("click", (e) => {
+      if (e.target === upiModal) {
+        upiModal.classList.remove("show");
+      }
+    });
+
+    copyUpiBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(UPI_CONFIG.id).then(() => {
+        copySuccess.classList.add("show");
+        setTimeout(() => {
+          copySuccess.classList.remove("show");
+        }, 2000);
+      });
+    });
+  }
 
 })();
 </script>
