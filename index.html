@@ -893,7 +893,7 @@
 
   <!-- Support Card -->
   <div class="support-card info-card">
-    <p>Saved your time? Support this ad-free tool! ☕</p>
+    <p>Help keep this tool server running & ad-free! ❤️</p>
     <button class="btn btn-secondary" id="supportBtn" type="button">
      ❤️ Support & Keep Ad-Free (₹20)
     </button>
@@ -903,8 +903,8 @@
   <div class="modal-overlay" id="upiModal">
     <div class="modal-card">
       <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
-      <h3>Buy me a Chai ☕</h3>
-      <p id="modalSubtext">Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.</p>
+      <h3>Keep This Tool Ad-Free</h3>
+      <p id="modalSubtext">Scan this QR code using GPay, PhonePe, or Paytm to contribute ₹20 towards server maintenance.</p>
       
       <!-- App Chooser (Shown on Mobile) -->
       <div class="upi-apps-list" id="upiAppsList" hidden>
@@ -1206,10 +1206,10 @@
       
       if (isMobile) {
         if (upiAppsList) upiAppsList.hidden = false;
-        if (modalSubtext) modalSubtext.textContent = "Choose your payment app to donate ₹20, or copy the UPI ID below.";
+        if (modalSubtext) modalSubtext.textContent = "Choose your payment app to contribute ₹20 and keep this tool ad-free.";
       } else {
         if (upiAppsList) upiAppsList.hidden = true;
-        if (modalSubtext) modalSubtext.textContent = "Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.";
+        if (modalSubtext) modalSubtext.textContent = "Scan this QR code using GPay, PhonePe, or Paytm to contribute ₹20 and keep this tool ad-free.";
       }
 
       upiModal.classList.add("show");
