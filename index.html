@@ -783,6 +783,56 @@
     .copy-success-msg.show {
       display: block;
     }
+
+    /* ---- UPI App Choose List (Mobile) ---- */
+    .upi-apps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .upi-app-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .upi-app-btn:active {
+      transform: scale(0.985);
+    }
+
+    .gpay-btn {
+      background: #1a73e8;
+      color: white;
+    }
+    .gpay-btn:hover { background: #155cb4; }
+
+    .phonepe-btn {
+      background: #5f259f;
+      color: white;
+    }
+    .phonepe-btn:hover { background: #4d1e82; }
+
+    .paytm-btn {
+      background: #00baf2;
+      color: white;
+    }
+    .paytm-btn:hover { background: #0099c8; }
+
+    .generic-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .generic-btn:hover { background: rgba(255, 255, 255, 0.1); }
   </style>
 </head>
 <body>
@@ -854,10 +904,19 @@
     <div class="modal-card">
       <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
       <h3>Buy me a Chai ☕</h3>
-      <p>Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.</p>
+      <p id="modalSubtext">Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.</p>
       
-      <div class="qr-container">
-        <img id="upiQr" src="" alt="UPI Payment QR Code" />
+      <!-- App Chooser (Shown on Mobile) -->
+      <div class="upi-apps-list" id="upiAppsList" hidden>
+        <a id="gpayLink" href="#" class="upi-app-btn gpay-btn" target="_blank">Pay via Google Pay</a>
+        <a id="phonepeLink" href="#" class="upi-app-btn phonepe-btn" target="_blank">Pay via PhonePe</a>
+        <a id="paytmLink" href="#" class="upi-app-btn paytm-btn" target="_blank">Pay via Paytm</a>
+        <a id="genericUpiLink" href="#" class="upi-app-btn generic-btn" target="_blank">Other UPI Apps</a>
+      </div>
+
+      <div class="qr-container" id="qrContainer" style="background:#ffffff; padding:16px; border-radius:12px; display:inline-block; margin-bottom:20px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+        <canvas id="upiQrCanvas" style="display:block; margin:0 auto; width:160px; height:160px;"></canvas>
+        <img id="upiQr" src="" alt="UPI Payment QR Code" style="display:block; margin:0 auto; width:160px; height:160px;" hidden />
       </div>
 
       <div class="upi-input-group">
@@ -1089,8 +1148,8 @@
 
   // UPI configuration placeholders
   const UPI_CONFIG = {
-    id: "anandamar72@oksbi", // Placed here for user replacement
-    name: "Anand Amar", // Placed here for user replacement
+    id: "anandamar72@oksbi",
+    name: "Anand Amar",
     amount: "20"
   };
 
@@ -1101,7 +1160,28 @@
         upiQr = $("upiQr"),
         copyUpiBtn = $("copyUpiBtn"),
         copySuccess = $("copySuccess"),
-        upiIdDisplay = $("upiIdDisplay");
+        upiIdDisplay = $("upiIdDisplay"),
+        upiAppsList = $("upiAppsList"),
+        modalSubtext = $("modalSubtext");
+
+  let qriousLoaded = false;
+
+  function loadQrious(callback) {
+    if (qriousLoaded) {
+      callback();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js";
+    script.onload = () => {
+      qriousLoaded = true;
+      callback();
+    };
+    script.onerror = () => {
+      callback(true); // Fallback to API if CDN fails
+    };
+    document.body.appendChild(script);
+  }
 
   if (supportBtn) {
     if (upiIdDisplay) {
@@ -1109,18 +1189,51 @@
     }
 
     const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_CONFIG.id)}&pn=${encodeURIComponent(UPI_CONFIG.name)}&am=${UPI_CONFIG.amount}&cu=INR&tn=Support%20SSC%20Sign`;
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLink)}`;
+    const gpayLink = `gpay://upi/pay?pa=${encodeURIComponent(UPI_CONFIG.id)}&pn=${encodeURIComponent(UPI_CONFIG.name)}&am=${UPI_CONFIG.amount}&cu=INR&tn=Support%20SSC%20Sign`;
+    const phonepeLink = `phonepe://pay?pa=${encodeURIComponent(UPI_CONFIG.id)}&pn=${encodeURIComponent(UPI_CONFIG.name)}&am=${UPI_CONFIG.amount}&cu=INR&tn=Support%20SSC%20Sign`;
+    const paytmLink = `paytmmp://pay?pa=${encodeURIComponent(UPI_CONFIG.id)}&pn=${encodeURIComponent(UPI_CONFIG.name)}&am=${UPI_CONFIG.amount}&cu=INR&tn=Support%20SSC%20Sign`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiLink)}`;
+
+    // Populate links
+    const gpayEl = $("gpayLink"), phonepeEl = $("phonepeLink"), paytmEl = $("paytmLink"), genericEl = $("genericUpiLink");
+    if (gpayEl) gpayEl.href = gpayLink;
+    if (phonepeEl) phonepeEl.href = phonepeLink;
+    if (paytmEl) paytmEl.href = paytmLink;
+    if (genericEl) genericEl.href = upiLink;
 
     supportBtn.addEventListener("click", () => {
       const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      
       if (isMobile) {
-        window.location.href = upiLink;
+        if (upiAppsList) upiAppsList.hidden = false;
+        if (modalSubtext) modalSubtext.textContent = "Choose your payment app to donate ₹20, or copy the UPI ID below.";
       } else {
-        if (upiQr && upiQr.src === "") {
-          upiQr.src = qrUrl;
-        }
-        upiModal.classList.add("show");
+        if (upiAppsList) upiAppsList.hidden = true;
+        if (modalSubtext) modalSubtext.textContent = "Scan this QR code using any UPI app (GPay, PhonePe, Paytm) to donate ₹20.";
       }
+
+      upiModal.classList.add("show");
+
+      loadQrious((fallback) => {
+        const canvas = $("upiQrCanvas");
+        if (fallback) {
+          if (canvas) canvas.hidden = true;
+          if (upiQr) {
+            if (upiQr.src === "") upiQr.src = qrUrl;
+            upiQr.hidden = false;
+          }
+        } else {
+          if (upiQr) upiQr.hidden = true;
+          if (canvas) {
+            canvas.hidden = false;
+            new QRious({
+              element: canvas,
+              value: upiLink,
+              size: 160
+            });
+          }
+        }
+      });
     });
 
     modalClose.addEventListener("click", () => {
