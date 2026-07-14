@@ -177,24 +177,8 @@
       top: 120px;
       width: 160px;
       height: 600px;
-      background: rgba(255, 255, 255, 0.01);
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.25);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
       z-index: 1;
       transition: opacity 0.3s;
-    }
-
-    .ad-rail::before {
-      content: "ADVERTISEMENT / SKYSCRAPER";
     }
 
     .ad-rail-left { left: calc(50% - 550px - 180px); }
@@ -258,28 +242,11 @@
 
     /* ---- Ad Placements ---- */
     .ad-slot {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-sm);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.3);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      padding: 16px;
-      text-align: center;
+      display: block;
+      width: 100%;
+      margin: 0 auto;
       min-height: 90px;
       transition: all 0.2s;
-    }
-
-    .ad-slot::before {
-      content: "SPONSORED ADVERTISEMENT";
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: rgba(99, 102, 241, 0.5);
     }
 
     .ad-slot-header {
@@ -771,33 +738,16 @@
       left: 0;
       width: 100%;
       height: 60px;
-      background: rgba(3, 7, 18, 0.95);
-      border-top: 1px solid var(--border);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 100;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
     }
 
     .mobile-anchor-content {
       position: relative;
       width: 320px;
       height: 50px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: 9px;
-      color: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-    }
-
-    .mobile-anchor-content::before {
-      content: "MOBILE STICKY ANCHOR AD (320x50)";
     }
 
     /* ---- Layout Helpers ---- */
@@ -816,6 +766,154 @@
       .glass-card { padding: 20px; }
       .drop-zone { min-height: 180px; padding: 24px 16px; }
     }
+
+    /* ---- Navigation Bar ---- */
+    .nav-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10;
+      margin-bottom: 8px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand-logo-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #8b5cf6;
+    }
+
+    /* ---- Footer ---- */
+    .footer-section {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: #8b5cf6;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(156, 163, 175, 0.45);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+      text-align: justify;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(156, 163, 175, 0.4);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -829,6 +927,21 @@
   <div class="ad-rail ad-rail-right" aria-hidden="true"></div>
 
   <div class="page-container">
+
+    <!-- Top Navigation Bar -->
+    <nav class="nav-bar">
+      <a href="/" class="nav-brand">
+        <div class="brand-logo-sm">S</div>
+        <span>SSC Sign</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/ssc-photo-guide.html">Photo Guide</a>
+        <a href="/ssc-signature-guide.html">Signature Guide</a>
+        <a href="/faq.html">FAQs</a>
+        <a href="/about.html">About</a>
+      </div>
+    </nav>
 
     <!-- Top Navigation Header -->
     <header class="brand-header">
@@ -1000,6 +1113,45 @@
       </aside>
 
     </div>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>About SSC Sign</h4>
+          <p>SSC Sign is a free, secure, and offline utility created to help competitive exam aspirants format and compress their signatures according to official guidelines.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/ssc-photo-guide.html">SSC Photo Guide</a></li>
+            <li><a href="/ssc-signature-guide.html">SSC Signature Guide</a></li>
+            <li><a href="/faq.html">Comprehensive FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        Disclaimer: This website is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC) or any Indian government agency. The official website of SSC is ssc.gov.in. All product and company names are trademarks or registered trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 SSC Sign. Processed 100% locally.
+      </div>
+    </footer>
 
   </div>
 

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <title>Privacy Policy — SSC Sign</title>
+  <meta name="description" content="Privacy Policy for SSC Sign. Learn how we handle your signature images with 100% local, offline browser-based compression and processing." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sscsign.in/privacy.html" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPXZW3RVF6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QPXZW3RVF6');
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%236366f1'/><text x='50' y='68' text-anchor='middle' font-size='52' font-family='system-ui' font-weight='700' fill='white'>S</text></svg>" />
+
+  <style>
+    :root {
+      --bg: #030712;
+      --surface: rgba(17, 24, 39, 0.65);
+      --surface-hover: rgba(31, 41, 55, 0.7);
+      --surface-card: rgba(17, 24, 39, 0.45);
+      --text: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --radius: 24px;
+      --radius-sm: 14px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      --font: 'Inter', -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .glow-orb-top {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---- Navigation Bar ---- */
+    .nav-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10;
+      margin-bottom: 8px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand-logo-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #8b5cf6;
+    }
+
+    /* ---- Glass Card ---- */
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* ---- Content Area ---- */
+    .content-area {
+      line-height: 1.8;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .content-area h1 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #ffffff, #d2d2d7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .meta-date {
+      font-size: 13px;
+      color: #8b5cf6;
+      margin-bottom: 32px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .content-area h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+
+    .content-area p {
+      margin-bottom: 16px;
+    }
+
+    .content-area ul {
+      margin-bottom: 16px;
+      padding-left: 20px;
+    }
+
+    .content-area li {
+      margin-bottom: 8px;
+    }
+
+    .content-area a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .content-area a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---- Footer ---- */
+    .footer-section {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: #8b5cf6;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(156, 163, 175, 0.45);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+      text-align: justify;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(156, 163, 175, 0.4);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .glass-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb-top" aria-hidden="true"></div>
+
+  <div class="page-container">
+
+    <!-- Top Navigation Bar -->
+    <nav class="nav-bar">
+      <a href="/" class="nav-brand">
+        <div class="brand-logo-sm">S</div>
+        <span>SSC Sign</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/ssc-photo-guide.html">Photo Guide</a>
+        <a href="/ssc-signature-guide.html">Signature Guide</a>
+        <a href="/faq.html">FAQs</a>
+        <a href="/about.html">About</a>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="glass-card content-area">
+      <h1>Privacy Policy</h1>
+      <div class="meta-date">Last Updated: July 14, 2026</div>
+
+      <p>At SSC Sign (accessible from sscsign.in), the privacy of our visitors is one of our top priorities. This Privacy Policy document details the types of information we collect, record, and how we use it, specifically highlighting our client-side offline architecture.</p>
+
+      <h2>1. 100% Client-Side Local Processing</h2>
+      <p>Unlike traditional online image compression tools, <strong>SSC Sign does NOT upload your signature or photos to any external server</strong>. All image operations, resizing, contrast adjustments, whitening filters, and JPEG compression are executed entirely within your web browser on your local device (computer, phone, or tablet).</p>
+      <p>Because processing runs locally using HTML5 Canvas and client-side JavaScript APIs, your physical signature never travels over the internet. This provides absolute privacy against identity theft and unauthorized data collection.</p>
+
+      <h2>2. Log Files</h2>
+      <p>SSC Sign follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
+
+      <h2>3. Cookies and Web Beacons</h2>
+      <p>Like any other website, SSC Sign uses "cookies". These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+
+      <h2>4. Google DoubleClick DART Cookie</h2>
+      <p>Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to sscsign.in and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">https://policies.google.com/technologies/ads</a>.</p>
+
+      <h2>5. Our Advertising Partners</h2>
+      <p>Some of the advertisers on our site may use cookies and web beacons. Our advertising partners include:</p>
+      <ul>
+        <li><strong>Google AdSense:</strong> Google's privacy policy can be found at <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">https://policies.google.com/technologies/ads</a>.</li>
+      </ul>
+      <p>These third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on SSC Sign, which are sent directly to users' browsers. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
+      <p>Note that SSC Sign has no access to or control over these cookies that are used by third-party advertisers.</p>
+
+      <h2>6. Third Party Privacy Policies</h2>
+      <p>SSC Sign's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+      <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
+
+      <h2>7. Consent</h2>
+      <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+
+      <h2>8. Contact Us</h2>
+      <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <a href="mailto:anand72amar@gmail.com">anand72amar@gmail.com</a>.</p>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>About SSC Sign</h4>
+          <p>SSC Sign is a free, secure, and offline utility created to help competitive exam aspirants format and compress their signatures according to official guidelines.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/ssc-photo-guide.html">SSC Photo Guide</a></li>
+            <li><a href="/ssc-signature-guide.html">SSC Signature Guide</a></li>
+            <li><a href="/faq.html">Comprehensive FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        Disclaimer: This website is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC) or any Indian government agency. The official website of SSC is ssc.gov.in. All product and company names are trademarks or registered trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 SSC Sign. Processed 100% locally.
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

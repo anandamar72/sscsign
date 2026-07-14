@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <title>Terms & Conditions — SSC Sign</title>
+  <meta name="description" content="Terms and Conditions for using SSC Sign, a client-side offline signature compression and formatting utility." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sscsign.in/terms.html" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPXZW3RVF6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QPXZW3RVF6');
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%236366f1'/><text x='50' y='68' text-anchor='middle' font-size='52' font-family='system-ui' font-weight='700' fill='white'>S</text></svg>" />
+
+  <style>
+    :root {
+      --bg: #030712;
+      --surface: rgba(17, 24, 39, 0.65);
+      --surface-hover: rgba(31, 41, 55, 0.7);
+      --surface-card: rgba(17, 24, 39, 0.45);
+      --text: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --radius: 24px;
+      --radius-sm: 14px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      --font: 'Inter', -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .glow-orb-top {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---- Navigation Bar ---- */
+    .nav-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10;
+      margin-bottom: 8px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand-logo-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #8b5cf6;
+    }
+
+    /* ---- Glass Card ---- */
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* ---- Content Area ---- */
+    .content-area {
+      line-height: 1.8;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .content-area h1 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #ffffff, #d2d2d7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .meta-date {
+      font-size: 13px;
+      color: #8b5cf6;
+      margin-bottom: 32px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .content-area h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+
+    .content-area p {
+      margin-bottom: 16px;
+    }
+
+    .content-area ul {
+      margin-bottom: 16px;
+      padding-left: 20px;
+    }
+
+    .content-area li {
+      margin-bottom: 8px;
+    }
+
+    .content-area a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .content-area a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---- Footer ---- */
+    .footer-section {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: #8b5cf6;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(156, 163, 175, 0.45);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+      text-align: justify;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(156, 163, 175, 0.4);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .glass-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb-top" aria-hidden="true"></div>
+
+  <div class="page-container">
+
+    <!-- Top Navigation Bar -->
+    <nav class="nav-bar">
+      <a href="/" class="nav-brand">
+        <div class="brand-logo-sm">S</div>
+        <span>SSC Sign</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/ssc-photo-guide.html">Photo Guide</a>
+        <a href="/ssc-signature-guide.html">Signature Guide</a>
+        <a href="/faq.html">FAQs</a>
+        <a href="/about.html">About</a>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="glass-card content-area">
+      <h1>Terms &amp; Conditions</h1>
+      <div class="meta-date">Last Updated: July 14, 2026</div>
+
+      <p>Welcome to SSC Sign. By accessing and using our website (sscsign.in) and its browser-based services, you agree to comply with and be bound by the following terms and conditions of use.</p>
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>By using this website, you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions, as well as our Privacy Policy. If you do not agree to these terms, please do not use our site or local client-side tool.</p>
+
+      <h2>2. Nature of Service &amp; Local Execution</h2>
+      <p>SSC Sign provides a free, client-side browser utility to resize, crop, whiten, and compress image files (such as signatures and photos) to fit specified limits (e.g., 6×2 cm, 300 DPI, 10–20 KB JPEG) required for government registrations.</p>
+      <p>All processing is executed completely within your local web browser engine. SSC Sign does not host, upload, store, or transmit your processed images to any remote servers. You are solely responsible for obtaining, saving, and uploading the generated image files to official portal destinations.</p>
+
+      <h2>3. Disclaimer of Warranties</h2>
+      <p>The tool and all information presented on this site are provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
+      <p>While we make every effort to design the formatting algorithms to output files matching official rules published by the Staff Selection Commission (SSC) and other organizations, <strong>we do not warrant or guarantee that the output images will be accepted by official governmental registration portals</strong>.</p>
+      <p>Acceptance depends on portal-side validation, server-side parameters, or visual verification by staff members. We are not liable for form rejections, registration delays, or missed application deadlines resulting from your use of this utility.</p>
+
+      <h2>4. Non-Affiliation Disclaimer</h2>
+      <p><strong>SSC Sign is an independent, private tool. We are NOT affiliated, associated, authorized, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC), the Government of India, or any other government department.</strong></p>
+      <p>The official portal for the Staff Selection Commission is <a href="https://ssc.gov.in" target="_blank" rel="noopener">ssc.gov.in</a>. Any references to official government exam guidelines are provided purely for informational and utility purposes.</p>
+
+      <h2>5. Permitted Use</h2>
+      <p>You are granted a non-exclusive, non-transferable, revocable license to access and use the website strictly in accordance with these Terms of Use. You may use this tool for personal, non-commercial purposes. You may not copy, reverse-engineer, distribute, or modify the browser script code for commercial redistribution without prior written consent.</p>
+
+      <h2>6. Limitation of Liability</h2>
+      <p>In no event shall SSC Sign or its creators be liable for any direct, indirect, incidental, special, consequential, or exemplary damages (including, but not limited to, loss of data, loss of opportunity, registration failure, or application rejections) arising out of or in connection with the use or inability to use this site and local script utilities.</p>
+
+      <h2>7. Contact Information</h2>
+      <p>If you have any questions or feedback regarding these Terms &amp; Conditions, please contact us via email at <a href="mailto:anand72amar@gmail.com">anand72amar@gmail.com</a>.</p>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>About SSC Sign</h4>
+          <p>SSC Sign is a free, secure, and offline utility created to help competitive exam aspirants format and compress their signatures according to official guidelines.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/ssc-photo-guide.html">SSC Photo Guide</a></li>
+            <li><a href="/ssc-signature-guide.html">SSC Signature Guide</a></li>
+            <li><a href="/faq.html">Comprehensive FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        Disclaimer: This website is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC) or any Indian government agency. The official website of SSC is ssc.gov.in. All product and company names are trademarks or registered trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 SSC Sign. Processed 100% locally.
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

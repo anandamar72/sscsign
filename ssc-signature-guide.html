@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <title>SSC Signature Size &amp; Formatting Guidelines — SSC Sign</title>
+  <meta name="description" content="Detailed guide for Staff Selection Commission (SSC) signature upload specifications. Dimensions (6.0x2.0 cm), size limits (10-20 KB), ink rules, and rejection troubleshooting." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sscsign.in/ssc-signature-guide.html" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPXZW3RVF6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QPXZW3RVF6');
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%236366f1'/><text x='50' y='68' text-anchor='middle' font-size='52' font-family='system-ui' font-weight='700' fill='white'>S</text></svg>" />
+
+  <style>
+    :root {
+      --bg: #030712;
+      --surface: rgba(17, 24, 39, 0.65);
+      --surface-hover: rgba(31, 41, 55, 0.7);
+      --surface-card: rgba(17, 24, 39, 0.45);
+      --text: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --radius: 24px;
+      --radius-sm: 14px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      --font: 'Inter', -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .glow-orb-top {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---- Navigation Bar ---- */
+    .nav-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10;
+      margin-bottom: 8px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand-logo-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #8b5cf6;
+    }
+
+    /* ---- Glass Card ---- */
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* ---- Content Area ---- */
+    .content-area {
+      line-height: 1.8;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .content-area h1 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #ffffff, #d2d2d7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .meta-date {
+      font-size: 13px;
+      color: #8b5cf6;
+      margin-bottom: 32px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .content-area h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+
+    .content-area h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .content-area p {
+      margin-bottom: 16px;
+    }
+
+    .content-area ul, .content-area ol {
+      margin-bottom: 24px;
+      padding-left: 20px;
+    }
+
+    .content-area li {
+      margin-bottom: 8px;
+    }
+
+    .content-area a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .content-area a:hover {
+      text-decoration: underline;
+    }
+
+    /* Table styling */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: rgba(17, 24, 39, 0.35);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .specs-table th, .specs-table td {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .specs-table th {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--text);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .specs-table td {
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .specs-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .alert-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin: 24px 0;
+      color: #ef4444;
+    }
+
+    .alert-box h4 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .alert-box p {
+      margin-bottom: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* ---- Footer ---- */
+    .footer-section {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: #8b5cf6;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(156, 163, 175, 0.45);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+      text-align: justify;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(156, 163, 175, 0.4);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .glass-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb-top" aria-hidden="true"></div>
+
+  <div class="page-container">
+
+    <!-- Top Navigation Bar -->
+    <nav class="nav-bar">
+      <a href="/" class="nav-brand">
+        <div class="brand-logo-sm">S</div>
+        <span>SSC Sign</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/ssc-photo-guide.html">Photo Guide</a>
+        <a href="/ssc-signature-guide.html" class="active">Signature Guide</a>
+        <a href="/faq.html">FAQs</a>
+        <a href="/about.html">About</a>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="glass-card content-area">
+      <h1>SSC Signature Upload Guidelines &amp; Technical Specifications</h1>
+      <div class="meta-date">Last Updated: July 14, 2026</div>
+
+      <p>When applying online for Staff Selection Commission (SSC) examinations, uploading a correctly formatted signature is just as important as uploading your photograph. Even a minor deviation in dimensions or size can cause the system to reject the file or, worse, lead to application disqualification later on. This detailed guide details the exact parameters and how to troubleshoot signature uploads.</p>
+
+      <h2>1. Key Specifications Table</h2>
+      <p>Ensure your signature file satisfies these parameters before submitting the online form:</p>
+
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>SSC Official Requirement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>File Size Range</strong></td>
+            <td>Strictly between 10 KB and 20 KB</td>
+          </tr>
+          <tr>
+            <td><strong>File Format</strong></td>
+            <td>JPG or JPEG only (.jpg or .jpeg extensions)</td>
+          </tr>
+          <tr>
+            <td><strong>Physical Size Ratio</strong></td>
+            <td>6.0 cm width × 2.0 cm height (3:1 aspect ratio)</td>
+          </tr>
+          <tr>
+            <td><strong>Pixel Count at 300 DPI</strong></td>
+            <td>709 pixels width × 236 pixels height</td>
+          </tr>
+          <tr>
+            <td><strong>Ink Color</strong></td>
+            <td>Dark Blue or Black ink only</td>
+          </tr>
+          <tr>
+            <td><strong>Paper Background</strong></td>
+            <td>Unruled, plain white paper (no lines or grids)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert-box">
+        <h4>⚠️ CRITICAL WARNING: No Capital Letters</h4>
+        <p>SSC portal rules explicitly state: <strong>"Signature in Capital letters will NOT be accepted."</strong> Ensure your signature is written in your normal cursive or running handwriting style. Signatures in block capitals will result in immediate form rejection.</p>
+      </div>
+
+      <h2>2. Visual Guidelines &amp; Preparation</h2>
+      <p>Follow this procedure to prepare a clean signature print:</p>
+      <ul>
+        <li><strong>Select the Right Paper:</strong> Use a clean sheet of plain white A4 paper. Do not use notebook paper with blue lines, grids, or texture patterns, as the automated scanning system flags these.</li>
+        <li><strong>Pen Choice:</strong> Use a gel or ballpoint pen with black or dark blue ink. Avoid light-colored blue pens, pencils, sketch pens, or markers that bleed through the paper. A crisp line makes digital processing easier.</li>
+        <li><strong>Avoid Shadows:</strong> If taking a photo of the signature using a phone camera, place the paper near a window or under a direct light source. Shadows cast by your hand or phone can make the paper look gray, causing portal upload rejections.</li>
+      </ul>
+
+      <h2>3. Common Reasons for Rejection</h2>
+      <p>Understanding why signatures are rejected helps you avoid rejections:</p>
+      <ol>
+        <li><strong>Shadowy Backgrounds:</strong> A gray, yellow, or dark background is the most common reason for rejection. This website's tool fixes this by filtering gray tones to produce a pure white background.</li>
+        <li><strong>Blurry or Pixelated Scans:</strong> Scanning or resizing to small dimensions can make the signature unreadable. The portal scans for stroke continuity.</li>
+        <li><strong>Crop is Too Close:</strong> Cropping the image right at the edges of the ink strokes can cut off letters. Keep a small margin (around 5% to 8%) around the signature.</li>
+        <li><strong>File Size Outside Limits:</strong> If your signature is 9.9 KB or 20.1 KB, the upload server will reject it. The size must sit strictly between 10 KB and 20 KB.</li>
+        <li><strong>Wrong Ink:</strong> Writing with red, green, or other non-standard ink colors.</li>
+      </ol>
+
+      <h2>4. Preserving 300 DPI Metadata</h2>
+      <p>Many government portals, including SSC, check the metadata tags inside the JPEG header. If your file is compressed using standard editors, it may lack the DPI resolution tag or be set to a default 72 DPI, which can cause rejection. Our tool automatically patches the JPEG binary header (APP0 JFIF marker), injecting the 300 DPI coordinate tags to pass automated portal scans.</p>
+
+      <h2>5. Formatting with Our Tool</h2>
+      <p>To use our offline tool for formatting your signature:
+      <ol>
+        <li>Take a clear, sharp photo of your signature with your phone.</li>
+        <li>Go to the <a href="/">SSC Signature Formatter</a> home page.</li>
+        <li>Drag and drop or upload your signature file.</li>
+        <li>Use the <strong>Contrast</strong> slider to whiten the paper background until shadows disappear.</li>
+        <li>Use the <strong>Inner Margin</strong> slider to adjust the whitespace borders.</li>
+        <li>Verify that the status indicates "Ready to Upload" (confirming the file is between 10-20 KB), and click <strong>Download Signature</strong>.</li>
+      </ol>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>About SSC Sign</h4>
+          <p>SSC Sign is a free, secure, and offline utility created to help competitive exam aspirants format and compress their signatures according to official guidelines.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/ssc-photo-guide.html">SSC Photo Guide</a></li>
+            <li><a href="/ssc-signature-guide.html">SSC Signature Guide</a></li>
+            <li><a href="/faq.html">Comprehensive FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        Disclaimer: This website is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC) or any Indian government agency. The official website of SSC is ssc.gov.in. All product and company names are trademarks or registered trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 SSC Sign. Processed 100% locally.
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
